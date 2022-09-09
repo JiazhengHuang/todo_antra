@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>TodoList Page</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="./styles.css" />
+        <script async src="./script.js"></script>
+    </head>
+    <body>
+        <main class="content">
+            <section class="todolist">
+                <div class="top-container">
+                    <input class="todolist__input" />
+                    <button class="btn-submit" type="submit">Submite</button>
+                </div>
+                <div class="task-container">
+                    <div class="pending-container">
+                        <p>Pending Tasks</p>
+                        <ul id="todolist_container">
+                            <li>
+                                <span>todo</span>
+                                <button>Edit</button>
+                                <button>Remove</button>
+                                <button>Move</button>
+                            </li>
+                            <li>
+                                <span>todo</span>
+                                <button>Edit</button>
+                                <button>Remove</button>
+                                <button>Move</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="completed-container">
+                        <p>Completed Tasks</p>
+                        <ul id="todolist_container">
+                            <li>
+                                <button>Move</button>
+                                <span>todo</span>
+                                <button>Edit</button>
+                                <button>Remove</button>
+                            </li>
+                            <li>
+                                <button>Move</button>
+                                <span>todo</span>
+                                <button>Edit</button>
+                                <button>Remove</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
