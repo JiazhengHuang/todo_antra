@@ -40,8 +40,8 @@ const Api = (() => {
 const View = (() => {
     const domstr = {
         todocontainer: "#todolist_container",
-        pendingContainer: ".pending-container",
-        completedContainer: ".completed-container",
+        pendingContainer: "#pending-todolist-container",
+        completedContainer: "#completed-todolist-container",
         inputbox: ".todolist__input",
         submitbtn: ".btn-submit",
         deletebtn: ".delete-btn",

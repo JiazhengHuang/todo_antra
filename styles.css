@@ -78,39 +78,20 @@ body {
     display: flex;
     list-style-type: none;
     width: 100%;
+    background-color: white;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 3px 3px;
 }
 
 .pending-container li span,
 .completed-container li span {
     flex: 1;
     padding-left: 10px;
+    text-align: center;
 }
 
 .pending-container li button,
 .completed-container li button {
     margin-left: 10px;
-}
-
-ul li button {
-    margin-right: 10px;
-    border: none;
-    background-color: rgba(0, 0, 0, 0);
-    color: rgb(255, 0, 0);
-    font-size: 1.3rem;
-}
-ul li button:hover {
-    font-size: 1.4rem;
-}
-ul li button:active {
-    font-size: 1.2rem;
-}
-ul {
-    height: calc(var(--height-todolist) - var(--height-todolist-header) * 2);
-    overflow: auto;
-}
-ul li:hover {
-    background-color: var(--color-red-li-hover);
-}
-ul li span {
-    overflow: hidden;
 }
