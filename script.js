@@ -59,7 +59,7 @@ const View = (() => {
             tmp += `
         <li>
           <span class="lspanSwitch-${todo.id}">${todo.title}</span>
-          <input style="display:none"/>
+          <input class="linput-${todo.id}" style='display:none;'/>
           <button class="editLeft-btn" id="${todo.id}">edit</button>
           <button class="delete-btn" id="${todo.id}">X</button>
           <button class="moveRight-btn" id="${todo.id}">-></button>
@@ -75,7 +75,7 @@ const View = (() => {
       <li>
         <button class="moveLeft-btn" id="${todo.id}"><-</button>
         <span class="rspanSwitch-${todo.id}">${todo.title}</span>
-        <input style="display:none"/>
+        <input class="rinput-${todo.id}" style="display:none"/>
         <button class="editRight-btn" id="${todo.id}">edit</button>
         <button class="delete-btn" id="${todo.id}">X</button>
       </li>
@@ -263,16 +263,83 @@ const Controller = ((model, view) => {
 
         todocontainer.addEventListener("click", (event) => {
             if (event.target.className === "editLeft-btn") {
+                const currid = event.target.id;
                 const txt = state.todolist.filter(
                     (todo) => +todo.id === +event.target.id
                 )[0].title;
                 const cn = "lspanSwitch-" + event.target.id;
-                // console.log("span classname: " + cn);
+                console.log("span classname: " + cn);
                 const ele = document.getElementsByClassName(cn);
+                ele[0].style.display = "none";
+                const cn2 = "linput-" + event.target.id;
+                const ele2 = document.getElementsByClassName(cn2)[0];
+                ele2.style.display = "block";
+                ele2.value = txt;
+
+                ele2.addEventListener("keyup", (event) => {
+                    if (
+                        event.key === "Enter" &&
+                        event.target.value.trim() !== ""
+                    ) {
+                        const newInputTxt = event.target.value;
+                        console.log(newInputTxt);
+
+                        // add
+                        const todo = new model.Todo(newInputTxt);
+                        model.addTodo(todo).then((todofromBE) => {
+                            state.todolist = [todofromBE, ...state.todolist];
+                        });
+
+                        // delete todo from left
+                        state.todolist = state.todolist.filter(
+                            (todo) => +todo.id !== +currid
+                        );
+                        model.deleteTodo(currid);
+                    }
+                });
             }
         });
 
-        todocontainer.addEventListener("click", (event) => {});
+        cptodocontainer.addEventListener("click", (event) => {
+            if (event.target.className === "editRight-btn") {
+                const currid = event.target.id;
+                const txt = cpstate.todolist.filter(
+                    (todo) => +todo.id === +event.target.id
+                )[0].title;
+                const cn = "rspanSwitch-" + event.target.id;
+                console.log("span classname: " + cn);
+                const ele = document.getElementsByClassName(cn);
+                ele[0].style.display = "none";
+                const cn2 = "rinput-" + event.target.id;
+                const ele2 = document.getElementsByClassName(cn2)[0];
+                ele2.style.display = "block";
+                ele2.value = txt;
+
+                ele2.addEventListener("keyup", (event) => {
+                    if (
+                        event.key === "Enter" &&
+                        event.target.value.trim() !== ""
+                    ) {
+                        const newInputTxt = event.target.value;
+
+                        // add
+                        const todo = new model.CPTodo(newInputTxt);
+                        model.addTodo(todo).then((todofromBE) => {
+                            cpstate.todolist = [
+                                todofromBE,
+                                ...cpstate.todolist,
+                            ];
+                        });
+
+                        // delete todo from left
+                        cpstate.todolist = cpstate.todolist.filter(
+                            (todo) => +todo.id !== +currid
+                        );
+                        model.deleteTodo(currid);
+                    }
+                });
+            }
+        });
     };
 
     const init = () => {
