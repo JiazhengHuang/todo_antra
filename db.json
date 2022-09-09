@@ -1,0 +1,14 @@
+{
+  "todos": [
+    {
+      "id":1,
+      "title":"Buy a car",
+      "completed": false
+    },
+    {
+      "id":2,
+      "title":"Buy a book",
+      "completed": true
+    }
+  ]
+}
